@@ -26,7 +26,6 @@ function SignUp() {
 
   function register(e) {
     e.preventDefault();
-    console.log(formData);
     fetch("/users", {
       method: "POST",
       headers: {
@@ -76,7 +75,7 @@ function SignUp() {
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                     placeholder="Emmanuel Matthews"
-                    // required
+                    required
                   />
                   {errors.full_name && (
                     <span className="text-xs text-red-600">
@@ -99,7 +98,7 @@ function SignUp() {
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                     placeholder="emmanuel@gmail.com"
-                    // required
+                    required
                   />
                   {errors.email &&
                     errors.email.map((error, index) => {
@@ -121,7 +120,7 @@ function SignUp() {
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                     placeholder="emmanuel_ke"
-                    // required
+                    required
                   />
                   {errors.username &&
                     errors.username.map((error, index) => {
@@ -143,7 +142,7 @@ function SignUp() {
                     value={formData.pasword}
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                    // required
+                    required
                   />
                   {errors.password &&
                     errors.password.map((error, index) => {
@@ -165,7 +164,7 @@ function SignUp() {
                     value={formData.password_confirmation}
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                    // required
+                    required
                   />
                   {errors.password_confirmation && (
                     <span className="text-xs text-red-600">
