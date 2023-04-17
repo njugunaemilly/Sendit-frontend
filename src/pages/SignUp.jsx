@@ -3,8 +3,11 @@ import Nav from "../components/Nav";
 import { FaTruck } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 function SignUp() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     full_name: "",
@@ -43,6 +46,7 @@ function SignUp() {
             showConfirmButton: false,
             timer: 1500
           })
+          setTimeout(() => navigate("/login"), 1500);
         } else {
           setErrors(data.errors);
         }
