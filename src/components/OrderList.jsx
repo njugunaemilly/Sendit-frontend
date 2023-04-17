@@ -3,6 +3,10 @@ import {
   ChevronRightIcon,
   EnvelopeIcon,
 } from "@heroicons/react/20/solid";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getParcels } from "../slices/parcelsSlice";
+
 
 const applications = [
   {
@@ -38,6 +42,15 @@ const applications = [
 ];
 
 export default function OrderList() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getParcels());
+  }, [dispatch]);
+  const { parcels, loading } = useSelector((state) => state.parcels);
+
+  if(!loading) {
+    console.log(parcels);
+  }
   return (
     <>
       <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">

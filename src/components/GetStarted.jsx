@@ -1,4 +1,22 @@
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 export default function GetStarted() {
+  const { user } = useSelector((state) => state.loggedIn);
+  const navigate = useNavigate();
+
+  function makeOrder () {
+    if(user.id){
+      navigate("/make-order");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "You have to be logged in to make an order",
+        timer: 1500,
+      });
+      setTimeout(() => navigate("/login"), 1500);
+    }
+  }
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
@@ -11,7 +29,7 @@ export default function GetStarted() {
             anim id veniam aliqua proident excepteur commodo do ea.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <button className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+            <button onClick={makeOrder} className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
               Make an Order
             </button>
           </div>

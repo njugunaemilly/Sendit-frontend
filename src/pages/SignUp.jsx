@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 import { FaTruck } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function SignUp() {
@@ -183,6 +183,9 @@ function SignUp() {
                   Sign Up
                 </button>
               </form>
+              <div className=" text-right">
+                <Link to="/login" className="text-xs underline text-bold">Or login</Link>
+              </div>
             </div>
           </div>
         </div>
