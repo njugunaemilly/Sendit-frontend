@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-// import Link from 'react-router-dom'
+import { useSelector } from "react-redux";
 
 export default function Hero() {
+  const { user } = useSelector((state) => state.loggedIn);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -85,21 +86,22 @@ export default function Hero() {
               fugiat aliqua.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link
-                to="/sign-up"
-                className="rounded-md bg-indigo-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
-              >
-                Get started
-              </Link>
-              <Link
-                to="/login"
-                className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-black shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
-              >
-                Log In
-              </Link>
-              {/* <a href="#" className="text-base font-semibold leading-7 text-white">
-                Learn more <span aria-hidden="true">→</span>
-              </a> */}
+              {!user.id && (
+                <Link
+                  to="/sign-up"
+                  className="rounded-md bg-indigo-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                >
+                  Get started
+                </Link>
+              )}
+              {!user.id && (
+                <Link
+                  to="/login"
+                  className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-black shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                >
+                  Log In
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -3,8 +3,7 @@ import Nav from "../components/Nav";
 import { FaTruck } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -46,7 +45,6 @@ function Login() {
             timer: 1500,
           });
           setTimeout(() => navigate("/"), 1500);
-
         } else {
           setErrors(data.errors);
         }
@@ -114,6 +112,9 @@ function Login() {
                   Login
                 </button>
               </form>
+              <div className=" text-right">
+                <Link to="/sign-up" className="text-xs underline text-bold">Or sign-up</Link>
+              </div>
             </div>
           </div>
         </div>

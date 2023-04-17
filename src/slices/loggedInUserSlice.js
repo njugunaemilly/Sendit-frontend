@@ -5,7 +5,7 @@ export const getLoggedInUser = createAsyncThunk("user/getLoggedInUser", async ()
     .then(res => res.json());
 })
 
-
+export const logoutUser = () => ({ type: "user/logout" })
 const loggedInUser = createSlice({
     name: "loggedIn",
     initialState: {
@@ -22,6 +22,9 @@ const loggedInUser = createSlice({
         },
         [getLoggedInUser.rejected]: (state, action) => {
             state.loading = false;
+        },
+        'user/logout': (state, action) => {
+            state.user = {};
         }
     }
 })
