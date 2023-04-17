@@ -3,8 +3,12 @@ import Nav from "../components/Nav";
 import { FaTruck } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -41,6 +45,8 @@ function Login() {
             showConfirmButton: false,
             timer: 1500,
           });
+          setTimeout(() => navigate("/"), 1500);
+
         } else {
           setErrors(data.errors);
         }
@@ -55,7 +61,7 @@ function Login() {
             <div className="p-6 space-y-3 sm:p-8">
               <div className="flex justify-between">
                 <FaTruck className="text-indigo-500 text-3xl" />
-                <h1 className="text-xl font-bold font-serif">Sign Up</h1>
+                <h1 className="text-xl font-bold font-serif">Log In</h1>
               </div>
               <form onSubmit={login} className="space-y-3">
                 <div>
