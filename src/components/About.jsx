@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-const About = () => {
-    return ( 
-        <div>
-            About
-        </div>
-=======
 import { FaTruck } from "react-icons/fa";
 const About = () => {
     return ( 
@@ -27,7 +20,6 @@ const About = () => {
   </div>
 </section>
 
->>>>>>> fe5c7cb (created about)
     );
 }
  
