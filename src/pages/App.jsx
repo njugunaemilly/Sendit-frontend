@@ -9,6 +9,7 @@ import AdminSingleOrder from "./AdminSingleOrder";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoggedInUser } from "../slices/loggedInUserSlice";
+import ContactUs from "./ContactUs";
 
 function App() {
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ function App() {
       <Route path="/orders" element={<Orders />}></Route>
       <Route path="/order" element={<SingleOrder />}></Route>
       <Route path="/admin-order" element={<AdminSingleOrder />}></Route>
+      <Route path="/contact-us" element={<ContactUs />}></Route>
       </Routes>
     </div>
   );
