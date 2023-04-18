@@ -5,6 +5,7 @@ import Homepage from "./Homepage";
 import CreateDelivery from "./CreateDelivery";
 import Orders from "./Orders";
 import SingleOrder from "./SingleOrder";
+import AdminSingleOrder from "./AdminSingleOrder";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoggedInUser } from "../slices/loggedInUserSlice";
@@ -23,6 +24,7 @@ function App() {
       <Route path="/make-order" element={<CreateDelivery />}></Route>
       <Route path="/orders" element={<Orders />}></Route>
       <Route path="/order" element={<SingleOrder />}></Route>
+      <Route path="/admin-order" element={<AdminSingleOrder />}></Route>
       </Routes>
     </div>
   );

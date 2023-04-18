@@ -1,18 +1,18 @@
 import React from "react";
-import SingleOrderUser from "../components/SingleOrderUser";
+import SingleOrderAdmin from "../components/SingleOrderAdmin";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import UserFeed from "../components/UserFeed";
 
-function SingleOrder() {
+function AdminSingleOrder() {
   return (
     <div>
       <Nav />
-      <div className="container mx-auto"><SingleOrderUser /></div>
+      <div className="container mx-auto"><SingleOrderAdmin /></div>
       <UserFeed />
       <Footer />
     </div>
   );
 }
 
-export default SingleOrder;
+export default AdminSingleOrder;
