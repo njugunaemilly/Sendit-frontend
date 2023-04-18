@@ -78,12 +78,10 @@ export default function Hero() {
           </div>
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Data to enrich your online business
+              Take Control of your Delivery Experience
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-300">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
+              Get the quickest and most affordable tailor made delivery solutions. A service that suits you is just a click of a button away.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               {!user.id && (

@@ -1,34 +1,35 @@
 import {
-  ArrowPathIcon,
-  CloudArrowUpIcon,
-  FingerPrintIcon,
-  LockClosedIcon,
+  TruckIcon,
+  HomeIcon,
+  ShoppingCartIcon,
+  GlobeEuropeAfricaIcon,
 } from "@heroicons/react/24/outline";
+
 
 const features = [
   {
-    name: "Push to deploy",
+    name: "Courier Services",
     description:
-      "Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.",
-    icon: CloudArrowUpIcon,
+      "Have your parcels delivered to you via us. We offer courier services over both long and short distances as well as accomodate most special requests. ",
+      icon: TruckIcon,
   },
   {
-    name: "SSL certificates",
+    name: "Door to Door Delivery",
     description:
-      "Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.",
-    icon: LockClosedIcon,
+      "Feel free to send your parcels from the comfort of your home and have the dropped of at your recipients' door step. ",
+    icon: HomeIcon,
   },
   {
-    name: "Simple queues",
+    name: "Grocery Delivery",
     description:
-      "Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.",
-    icon: ArrowPathIcon,
+      "Enjoy the absolute convinience of having groceries delivered from wherever they maybe to wherever you are. Get the most out of your lazy day and make an order.",
+    icon: ShoppingCartIcon,
   },
   {
-    name: "Advanced security",
+    name: "Bulk Delivery Services",
     description:
-      "Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.",
-    icon: FingerPrintIcon,
+      "Have large and/or heavy items you need moved? Feel free to make a delivery order and let us sort it out. We'll have your package anywhere you'd like as as soon as is possible.",
+    icon: GlobeEuropeAfricaIcon,
   },
 ];
 
@@ -38,15 +39,13 @@ export default function Info() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-lg font-semibold leading-8 tracking-tight text-indigo-600">
-            Deploy faster
+            Our Services
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Everything you need to deploy your app
+            A better way to manage your deliveries
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Quis tellus eget adipiscing convallis sit sit eget aliquet quis.
-            Suspendisse eget egestas a elementum pulvinar et feugiat blandit at.
-            In mi viverra elit nunc.
+            Choose from the broad variety of services we offer and find what suits your needs. For everything deliveries, we've got you covered.
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
