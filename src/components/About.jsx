@@ -7,18 +7,18 @@ const About = () => {
           <span className="text-3xl text-indigo-500">
             <FaTruck />
           </span>
-          <h1 className="text-indigo-500 font-mono font-bold md:text-4xl lg:text-5xl">
+          <h1 className="text-black font-bold md:text-4xl lg:text-5xl">
             SENDIT
           </h1>
         </li>
-        <p className="pt-4 pr-0 mb-4 font-medium text-md text-blue-800 tracking-relaxed lg:pr-16">
-          Welcome to Sendiit - your go-to parcel delivery app! We are a team of
+        <p className="pt-4 pr-0 mb-4 font-medium text-md text-black tracking-relaxed lg:pr-16">
+          Welcome to Sendit - your go-to parcel delivery app! We are a team of
           dedicated individuals passionate about providing reliable and
           efficient parcel delivery services for individuals and businesses
           alike.
         </p>
-        <p className="pt-4 pr-0 mb-4 font-medium text-md text-blue-800 tracking-relaxed lg:pr-16">
-          At Sendiit, we understand that time and convenience are of utmost
+        <p className="pt-4 pr-0 mb-4 font-medium text-md text-black tracking-relaxed lg:pr-16">
+          At Sendit, we understand that time and convenience are of utmost
           importance when it comes to parcel delivery. That's why we have
           developed a user-friendly app that allows you to book, track, and
           manage your parcel deliveries with just a few taps on your smartphone.
