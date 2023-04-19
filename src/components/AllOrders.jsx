@@ -61,16 +61,16 @@ export default function AllOrders() {
               <div className="text-gray-500 font-medium flex gap-2">
                 <span>Status: {parcel.status.status}</span>
                 <span className="flex justify-between items-center">
-                  {parcel.status.status === "delivered" && (
+                  {parcel.status.status === "Delivered" && (
                     <CheckIcon className="h-5 w-5 text-green-500 mr-2" />
                   )}
-                  {parcel.status.status === "in-transit" && (
+                  {parcel.status.status === "In-transit" && (
                     <TruckIcon className="h-5 w-5 text-yellow-500 mr-2" />
                   )}
-                  {parcel.status.status === "cancelled" && (
+                  {parcel.status.status === "Cancelled" && (
                     <XCircleIcon className="h-5 w-5 text-red-500 mr-2" />
                   )}
-                  {parcel.status.status === "pending" && (
+                  {parcel.status.status === "Pending" && (
                     <ArrowPathIcon className="h-5 w-5 text-red-500 mr-2" />
                   )}
                 </span>

@@ -1,4 +1,9 @@
-import { CheckIcon, HandThumbUpIcon, UserIcon } from '@heroicons/react/20/solid'
+import {
+  CheckIcon,
+  TruckIcon,
+  XCircleIcon,
+  ArrowPathIcon,
+} from "@heroicons/react/20/solid";
 
 const timeline = [
   {
@@ -8,7 +13,7 @@ const timeline = [
     href: '#',
     date: 'Sep 20',
     datetime: '2020-09-20',
-    icon: UserIcon,
+    icon: ArrowPathIcon,
     iconBackground: 'bg-gray-400',
   },
   {
@@ -18,7 +23,7 @@ const timeline = [
     href: '#',
     date: 'Sep 22',
     datetime: '2020-09-22',
-    icon: HandThumbUpIcon,
+    icon: TruckIcon,
     iconBackground: 'bg-blue-500',
   },
   {
@@ -28,7 +33,7 @@ const timeline = [
     href: '#',
     date: 'Sep 28',
     datetime: '2020-09-28',
-    icon: CheckIcon,
+    icon: XCircleIcon,
     iconBackground: 'bg-green-500',
   },
   {
@@ -38,18 +43,8 @@ const timeline = [
     href: '#',
     date: 'Sep 30',
     datetime: '2020-09-30',
-    icon: HandThumbUpIcon,
-    iconBackground: 'bg-blue-500',
-  },
-  {
-    id: 5,
-    content: 'Completed interview with',
-    target: 'Katherine Snyder',
-    href: '#',
-    date: 'Oct 4',
-    datetime: '2020-10-04',
     icon: CheckIcon,
-    iconBackground: 'bg-green-500',
+    iconBackground: 'bg-blue-500',
   },
 ]
 
