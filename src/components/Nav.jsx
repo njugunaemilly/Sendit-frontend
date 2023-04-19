@@ -26,7 +26,11 @@ function Nav() {
 
   function orders() {
     if (user.id) {
-      navigate("/orders");
+      if(user.user_type === "Customer"){
+        navigate("/orders");
+      } else {
+        navigate("/all-orders");
+      }
     } else {
       Swal.fire({
         icon: "error",
@@ -51,9 +55,11 @@ function Nav() {
         <Link to="/contact-us" className="text-white">
           Contact Us
         </Link>
-        <button onClick={orders} className="text-white">
-          Your orders
-        </button>
+        {user.id && (
+          <button onClick={orders} className="text-white">
+            {user.user_type === "Customer" ? "Your Orders" : "All Orders"}
+          </button>
+        )}
         {user.id && (
           <button onClick={logout} className="text-white">
             Log out

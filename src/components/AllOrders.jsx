@@ -6,64 +6,45 @@ import {
   TruckIcon,
   UserIcon,
   XCircleIcon,
-  ArrowPathIcon,
+  ArrowPathIcon
 } from "@heroicons/react/20/solid";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function OrderList() {
+
+
+export default function AllOrders() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { parcels, loading } = useSelector((state) => state.parcels);
-  const { user } = useSelector((state) => state.loggedIn);
 
   useEffect(() => {
     dispatch(getParcels());
   }, [dispatch]);
 
-  const filteredParcels = parcels.filter(
-    (parcel) => parcel.user_id === user.id
-  );
 
   if (loading) {
     return <div className="h-screen">Loading...</div>;
   }
-  if (filteredParcels.length === 0) {
-    return (
-      <div class="flex flex-col items-center justify-center h-screen">
-        <div class="text-center font-bold text-2xl">You have no orders.</div>
-        <div class="text-center font-bold text-xl">
-          Go to the{" "}
-          <Link to="/" className="text-blue-300">
-            homepage
-          </Link>{" "}
-          to read about us and make an order.
-        </div>
-      </div>
-    );
-  }
 
-  function singleOrder(e) {
+
+  function singleOrder (e){
     e.preventDefault();
-    navigate(`/orders/${e.target.id}`);
+      navigate(`/admin-orders/${e.target.id}`)
   }
 
   return (
-    <div className="h-screen">
+    <div >
       <div className="border-b border-gray-200 flex justify-center gap-4 items-center">
-        <h1 className="text-3xl font-bold">Your Orders</h1>
-        <span>
-          <TruckIcon className="h-6 w-7 text-yellow-500" />
-        </span>
+        <h1  className="text-3xl font-bold">
+          Your Orders 
+        </h1>
+        <span><TruckIcon className="h-6 w-7 text-yellow-500"/></span>
       </div>
 
       <div className="container mx-auto mt-4">
-        {filteredParcels.map((parcel) => (
+        {parcels.map((parcel) => (
           <div key={parcel.id} className="border-b border-gray-200 py-4">
-            <h1
-              onClick={singleOrder}
-              id={parcel.id}
-              className="text-xl underline font-medium leading-6 text-gray-900 mb-2 cursor-pointer"
-            >
+            <h1 onClick={singleOrder} id={parcel.id} className="text-xl underline font-medium leading-6 text-gray-900 mb-2 cursor-pointer">
               {parcel.parcel_name}
             </h1>
             <h1 className="text-lg font-medium leading-6 text-gray-900 mb-2">
