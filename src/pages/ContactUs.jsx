@@ -49,7 +49,7 @@ export default function ContactUs() {
   return (
     <>
       <Nav />
-      <div className="relative bg-white">
+      <div className="relative bg-white m-4">
         <div className="lg:absolute lg:inset-0">
           <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
             <img

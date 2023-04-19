@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { getLoggedInUser } from "../slices/loggedInUserSlice";
 import ContactUs from "./ContactUs";
 import AboutPage from "./AboutPage";
+import AdminOrders from "./AdminOrders";
 
 function App() {
   const dispatch = useDispatch()
@@ -25,10 +26,11 @@ function App() {
       <Route path="/" element={<Homepage />}></Route>
       <Route path="/make-order" element={<CreateDelivery />}></Route>
       <Route path="/orders" element={<Orders />}></Route>
-      <Route path="/order" element={<SingleOrder />}></Route>
-      <Route path="/admin-order" element={<AdminSingleOrder />}></Route>
+      <Route path="/orders/:id" element={<SingleOrder />}></Route>
+      <Route path="/admin-orders/:id" element={<AdminSingleOrder />}></Route>
       <Route path="/contact-us" element={<ContactUs />}></Route>
       <Route path="/about" element={<AboutPage/>}></Route>
+      <Route path="/all-orders" element={<AdminOrders/>}></Route>
       </Routes>
     </div>
   );
