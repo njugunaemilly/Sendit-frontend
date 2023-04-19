@@ -11,11 +11,11 @@ export default function SingleOrderAdmin() {
     const [enabled, setEnabled] = useState(false)
   return (
     <>
-      <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">
+      <div className="border-b border-gray-200 p-5 sm:flex sm:items-center sm:justify-between font-bold text-2xl">
+        <h3 className="text-2xl font-medium leading-6 text-gray-900">
           Kitusuru - Athi River
         </h3>
-        <h3 className="text-lg font-medium leading-9 text-gray-900">
+        <h3 className="text-2xl font-medium leading-9 text-gray-900">
           Status: Pending
         </h3>
       </div>
@@ -29,7 +29,7 @@ export default function SingleOrderAdmin() {
           </p>
         </div>
         <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
-          <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+          <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">Full name</dt>
               <dd className="mt-1 text-sm text-gray-900">Margot Foster</dd>

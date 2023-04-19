@@ -59,7 +59,7 @@ function classNames(...classes) {
 
 export default function UserFeed() {
   return (
-    <div className="flow-root">
+    <div className="flow-root p-24 m-12">
       <ul role="list" className="-mb-8">
         {timeline.map((event, eventIdx) => (
           <li key={event.id}>
