@@ -1,21 +1,82 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 export default function OrderForm() {
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.loggedIn);
+  const [formData, setFormData] = useState({
+    parcel_name: "",
+    weight: "",
+    price: "",
+    pickup_location: "",
+    destination: "",
+    user_id: user.id,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const weightClasses = [
+    { name: "Small", weightRange: { min: 0, max: 5 }, price: 10 },
+    { name: "Medium", weightRange: { min: 5, max: 10 }, price: 20 },
+    { name: "Large", weightRange: { min: 10, max: 20 }, price: 30 },
+  ];
+
+  const [selectedWeightClass, setSelectedWeightClass] = useState(null);
+
+  const handleWeightClassChange = (event) => {
+    const weightClassIndex = event.target.value;
+    setSelectedWeightClass(weightClasses[weightClassIndex]);
+  };
+
+  const weightClassPrice = selectedWeightClass ? selectedWeightClass.price : 0;
+
+  // const [quantity, setQuantity] = useState(1);
+
+  // const handleQuantityChange = event => {
+  //   const newQuantity = parseInt(event.target.value);
+  //   setQuantity(newQuantity);
+  // };
+
+  // const totalPrice = weightClassPrice * quantity;
+
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  }
+
+  function createOrder(e) {
+    e.preventDefault();
+    fetch("/parcels", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formData }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.errors) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your order has been created successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setTimeout(() => navigate("/orders"), 1500);
+        } else {
+          setErrors(data.errors);
+        }
+      });
+  }
   return (
     <>
-      <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
+      <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between py-4">
         <h3 className="text-lg font-medium leading-6 text-gray-900">
           Create a Delivery
         </h3>
@@ -35,61 +96,74 @@ export default function OrderForm() {
                 Delivery Information
               </h3>
               <p className="mt-1 text-sm text-gray-600">
-                Please fill out the form with accurate information.
+                Please provide accurate information for your delivery.
               </p>
             </div>
           </div>
-          <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+
+          <div className="mt-5 md:col-span-2 md:mt-4 ">
+            <form onSubmit={createOrder} className="space-y-3">
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
-                  <div className="grid grid-cols-6 gap-6">
-                    <div className="col-span-6 sm:col-span-3">
-                      <label
-                        htmlFor="first-name"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        First name
-                      </label>
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
+                  <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                    <input
+                      type="text"
+                      name="parcel_name"
+                      id="parcel_name"
+                      value={formData.parcel_name}
+                      onChange={handleInputChange}
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="Enter parcel name"
+                      required
+                    />
+                    {errors.full_name && (
+                      <span className="text-xs text-red-600">
+                        {errors.parcel_name[0]}!
+                      </span>
+                    )}
 
                     <div className="col-span-6 sm:col-span-3">
                       <label
-                        htmlFor="last-name"
+                        htmlFor="weight"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Last name
+                        Weight Class:
+                        <select
+                          id="weight"
+                          name="weight"
+                          className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                          onChange={handleWeightClassChange}
+                        >
+                          <option value="">Select a weight class</option>
+                          {weightClasses.map((weightClass, index) => (
+                            <option key={index} value={index}>
+                              {weightClass.name} ({weightClass.weightRange.min}{" "}
+                              - {weightClass.weightRange.max} pounds) - $
+                              {weightClass.price}
+                            </option>
+                          ))}
+                        </select>
                       </label>
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        autoComplete="family-name"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
+                      {selectedWeightClass && (
+                        <p className="text-xs text-blue-500">
+                          Selected weight class: {selectedWeightClass.name} (
+                          {selectedWeightClass.weightRange.min} -{" "}
+                          {selectedWeightClass.weightRange.max} pounds) - $
+                          {selectedWeightClass.price}
+                        </p>
+                      )}
 
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="email-address"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Email address
-                      </label>
-                      <input
-                        type="text"
-                        name="email-address"
-                        id="email-address"
-                        autoComplete="email"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
+                      {errors.full_name && (
+                        <span className="text-xs text-red-600">
+                          {errors.parcel_name[0]}!
+                        </span>
+                      )}
+
+                      <div className="col-span-6 sm:col-span-6 lg:col-span-3">
+                        <p className="mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 border py-2 px-3 ">
+                          Price: ${weightClassPrice}
+                        </p>
+                      </div>
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
@@ -111,20 +185,26 @@ export default function OrderForm() {
                       </select>
                     </div>
 
-                    <div className="col-span-6">
+                    <div className="col-span-6 sm:col-span-6 lg:col-span-2">
                       <label
                         htmlFor="street-address"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Delivery address
+                        Pickup
                       </label>
                       <input
                         type="text"
                         name="street-address"
                         id="street-address"
-                        autoComplete="street-address"
+                        value={formData.pickup_location}
+                        onChange={handleInputChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
+                      {errors.full_name && (
+                        <span className="text-xs text-red-600">
+                          {errors.pickup_location[0]}!
+                        </span>
+                      )}
                     </div>
 
                     <div className="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -132,44 +212,26 @@ export default function OrderForm() {
                         htmlFor="city"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Additional Information
+                        Destination
                       </label>
                       <input
                         type="text"
                         name="city"
                         id="city"
-                        autoComplete="address-level2"
+                        value={formData.destination}
+                        onChange={handleInputChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
+
+                      {errors.full_name && (
+                        <span className="text-xs text-red-600">
+                          {errors.destination[0]}!
+                        </span>
+                      )}
                     </div>
-
-                    {/* <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                          State / Province
-                        </label>
-                        <input
-                          type="text"
-                          name="region"
-                          id="region"
-                          autoComplete="address-level1"
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        />
-                      </div> */}
-
-                    {/* <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                          ZIP / Postal code
-                        </label>
-                        <input
-                          type="text"
-                          name="postal-code"
-                          id="postal-code"
-                          autoComplete="postal-code"
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        />
-                      </div> */}
                   </div>
                 </div>
+
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
                     type="submit"
