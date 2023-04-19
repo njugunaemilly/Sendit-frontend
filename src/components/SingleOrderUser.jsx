@@ -3,11 +3,11 @@ import { EnvelopeIcon, PhoneIcon} from "@heroicons/react/20/solid";
 export default function SingleOrderUser() {
   return (
     <>
-      <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">
+      <div className="border-b border-gray-200 p-5 sm:flex sm:items-center sm:justify-between font-bold text-2xl">
+        <h3 className="text-2xl font-medium leading-6 text-gray-900">
           Kitusuru - Athi River
         </h3>
-        <h3 className="text-lg font-medium leading-9 text-gray-900">
+        <h3 className="text-2xl font-medium leading-9 text-gray-900">
           Status: Pending
         </h3>
       </div>
@@ -34,12 +34,14 @@ export default function SingleOrderUser() {
             <dt className="text-sm font-medium text-gray-500">Delivery Location</dt>
             <dd className="mt-1 text-sm text-gray-900">Kitusuru - Athi River</dd>
           </div>
+          <div className= "py-8">
           <button
         type="button"
-        className=" items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mr-4"
+        className=" inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2  text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         Edit Location
       </button>
+      </div>
           <div className="sm:col-span-2">
             <dt className="text-sm font-medium text-gray-500">About</dt>
             <dd className="mt-1 text-sm text-gray-900">
@@ -79,12 +81,14 @@ export default function SingleOrderUser() {
           </div>
         </dl>
       </div>
+      <div className= "py-8">
       <button
         type="button"
-        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2  text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         Cancel Delivery
       </button>
+      </div>
     </div>
     </>
   );
