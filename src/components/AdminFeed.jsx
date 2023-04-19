@@ -59,7 +59,7 @@ function classNames(...classes) {
 
 export default function AdminFeed() {
   return (
-    <div className="flow-root">
+    <div className="flow-root p-24 m-12" >
       <ul role="list" className="-mb-8">
         {timeline.map((event, eventIdx) => (
           <li key={event.id}>
@@ -91,12 +91,12 @@ export default function AdminFeed() {
                     <time dateTime={event.datetime}>{event.date}</time>
                   </div>
                 </div>
-                <a
+                <button
                         href="#"
-                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                        className="font-medium text-indigo-600 hover:text-indigo-500 "
                       >
                         Edit
-                      </a>
+                      </button>
               </div>
             </div>
           </li>
