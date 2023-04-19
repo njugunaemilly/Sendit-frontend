@@ -7,7 +7,7 @@ const HeadlineCards = () => {
       <div className='rounded-xl relative'>
         {/* Overlay */}
         <div className='absolute w-full h-full bg-black/50 rounded-xl text-white'>
-          <p className='font-bold text-2xl px-2 pt-4'>Ensuring Your Convinience</p>
+          <p className='font-bold text-2xl px-2 pt-4'>Ensuring Your Convenience</p>
           <p className='px-2'>Whenever Wherever!</p>
         </div>
         <img
