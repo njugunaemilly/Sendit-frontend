@@ -10,7 +10,7 @@ export default function OrderForm() {
 
   const [formData, setFormData] = useState({
     parcel_name: "",
-    weight: 0,
+    weight: null,
     price: "",
     pickup_location: "",
     destination: "",
@@ -52,9 +52,10 @@ export default function OrderForm() {
       ...prevState,
       user_id: user.id,
     }));
-    console.log(e.target.value);
     if (e.target.value > 10000) {
-      console.log("too big");
+      return "The class is not available";
+    }
+    if (e.target.value === "") {
       return "The class is not available";
     }
     const weight = parseFloat(e.target.value);
@@ -75,35 +76,33 @@ export default function OrderForm() {
       price: selectedClass.price,
       weight: e.target.value,
     }));
-    console.log(selectedClass.price);
   }
 
   function createOrder(e) {
     e.preventDefault();
 
-    console.log(formData);
-    // fetch("/parcels", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ formData }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (!data.errors) {
-    //       Swal.fire({
-    //         position: "top-end",
-    //         icon: "success",
-    //         title: "Your order has been created successfully",
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
-    //       setTimeout(() => navigate("/orders"), 1500);
-    //     } else {
-    //       setErrors(data.errors);
-    //     }
-    //   });
+    fetch("/parcels", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formData }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.errors) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your order has been created successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setTimeout(() => navigate("/orders"), 1500);
+        } else {
+          setErrors(data.errors);
+        }
+      });
   }
   return (
     <>
@@ -149,7 +148,7 @@ export default function OrderForm() {
                         placeholder="Enter parcel name"
                         required
                       />
-                      {errors.full_name && (
+                      {errors.parcel_name && (
                         <span className="text-xs text-red-600">
                           {errors.parcel_name[0]}!
                         </span>
@@ -190,7 +189,14 @@ export default function OrderForm() {
                         id="weight"
                         onChange={calcweight}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        required
                       />
+                      {errors.weight && (
+                        <span className="text-xs text-red-600">
+                          {errors.weight[0]}!
+                        </span>
+                      )}
+
                       {formData.price && (
                         <span className="text-xl text-green-600">
                           {`Price: ${formData.price}`}!
@@ -212,8 +218,10 @@ export default function OrderForm() {
                         value={formData.pickup_location}
                         onChange={handleInputChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        required
                       />
-                      {errors.full_name && (
+                      
+                      {errors.pickup_location && (
                         <span className="text-xs text-red-600">
                           {errors.pickup_location[0]}!
                         </span>
@@ -234,9 +242,11 @@ export default function OrderForm() {
                         value={formData.destination}
                         onChange={handleInputChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        required
                       />
 
-                      {errors.full_name && (
+                      
+                      {errors.destination && (
                         <span className="text-xs text-red-600">
                           {errors.destination[0]}!
                         </span>
@@ -259,12 +269,11 @@ export default function OrderForm() {
                           defaultValue={""}
                           value={formData.description}
                           onChange={handleInputChange}
-                          required
                         />
                       </div>
-                      {errors.full_name && (
+                      {errors.description && (
                         <span className="text-xs text-red-600">
-                          {errors.parcel_name[0]}!
+                          {errors.description[0]}!
                         </span>
                       )}
                     </div>

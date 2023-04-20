@@ -28,9 +28,9 @@ export default function OrderList() {
   }
   if (filteredParcels.length === 0) {
     return (
-      <div class="flex flex-col items-center justify-center h-screen">
-        <div class="text-center font-bold text-2xl">You have no orders.</div>
-        <div class="text-center font-bold text-xl">
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="text-center font-bold text-2xl">You have no orders.</div>
+        <div className="text-center font-bold text-xl">
           Go to the{" "}
           <Link to="/" className="text-blue-300">
             homepage
