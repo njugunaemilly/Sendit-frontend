@@ -58,7 +58,7 @@ export default function UserFeed({id}) {
   }, [dispatch]);
 
   if (loading) {
-    return <div className="h-screen">Loading...</div>;
+    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
   }
   let filteredParcel = [];
   filteredParcel = parcels.filter(
@@ -66,7 +66,7 @@ export default function UserFeed({id}) {
   );
 
   if (filteredParcel.length === 0) {
-    return <div className="h-screen">Loading...</div>;
+    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
   }
   return (
     <div className="flow-root p-24 m-12 border rounded-lg">

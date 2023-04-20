@@ -1,12 +1,33 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { TruckIcon } from "@heroicons/react/20/solid";
+import {
+  GoogleMap,
+  MarkerF,
+  useJsApiLoader,
+  Autocomplete,
+  DirectionsRenderer,
+} from "@react-google-maps/api";
 
 export default function OrderForm() {
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API,
+    libraries: ["places"],
+  });
+
+  const center = {
+    lat: -1.2921,
+    lng: 36.8219,
+  };
+
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.loggedIn);
+  const [directionsResponse, setDirectionsResponse] = useState(null);
+  const [distance, setDistance] = useState("");
+  const [duration, setDuration] = useState("");
 
   const [formData, setFormData] = useState({
     parcel_name: "",
@@ -104,6 +125,42 @@ export default function OrderForm() {
         }
       });
   }
+
+  const pickupAutoCompleteRef = useRef(null);
+  const destinationAutoCompleteRef = useRef(null);
+
+  const handlePlaceChanged = (fieldName) => {
+    const autoCompleteRef =
+      fieldName === "pickup_location"
+        ? pickupAutoCompleteRef
+        : destinationAutoCompleteRef;
+    const place = autoCompleteRef.current.getPlace();
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [fieldName]: place.formatted_address,
+    }));
+  };
+
+  if (!isLoaded) {
+    return <p>Loading map..</p>;
+  }
+
+  async function calculateRoute() {
+    if (formData.pickup_location === "" || formData.destination === "") {
+      return;
+    }
+    // eslint-disable-next-line no-undef
+    const directionsService = new google.maps.DirectionsService();
+    const results = await directionsService.route({
+      origin: String(formData.pickup_location),
+      destination: String(formData.destination),
+      // eslint-disable-next-line no-undef
+      travelMode: google.maps.TravelMode.DRIVING,
+    });
+    setDirectionsResponse(results);
+    setDistance(results.routes[0].legs[0].distance.text);
+    setDuration(results.routes[0].legs[0].duration.text);
+  }
   return (
     <>
       <div className="border-b border-gray-200 flex justify-center gap-4 items-center mb-4 p-4">
@@ -181,7 +238,7 @@ export default function OrderForm() {
                         htmlFor="weight"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Weight
+                        Weight(KG)
                       </label>
                       <input
                         type="number"
@@ -211,16 +268,23 @@ export default function OrderForm() {
                       >
                         Pickup
                       </label>
-                      <input
-                        type="text"
-                        name="pickup_location"
-                        id="pickup_location"
-                        value={formData.pickup_location}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        required
-                      />
-                      
+                      <Autocomplete
+                        onLoad={(autoComplete) =>
+                          (pickupAutoCompleteRef.current = autoComplete)
+                        }
+                        onPlaceChanged={() =>
+                          handlePlaceChanged("pickup_location")
+                        }
+                      >
+                        <input
+                          type="text"
+                          name="pickup_location"
+                          id="pickup_location"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          required
+                        />
+                      </Autocomplete>
+
                       {errors.pickup_location && (
                         <span className="text-xs text-red-600">
                           {errors.pickup_location[0]}!
@@ -235,23 +299,48 @@ export default function OrderForm() {
                       >
                         Destination
                       </label>
-                      <input
-                        type="text"
-                        name="destination"
-                        id="destination"
-                        value={formData.destination}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        required
-                      />
+                      <Autocomplete
+                        onLoad={(autoComplete) =>
+                          (destinationAutoCompleteRef.current = autoComplete)
+                        }
+                        onPlaceChanged={() => handlePlaceChanged("destination")}
+                      >
+                        <input
+                          type="text"
+                          name="destination"
+                          id="destination"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          required
+                        />
+                      </Autocomplete>
 
-                      
                       {errors.destination && (
                         <span className="text-xs text-red-600">
                           {errors.destination[0]}!
                         </span>
                       )}
                     </div>
+                    <div className="flex items-center justify-evenly">
+                      <button
+                        type="button"
+                        onClick={calculateRoute}
+                        className="inline-flex justify-center rounded-md border border-transparent bg-slate-900 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-2"
+                      >
+                        Route
+                      </button>
+
+                      {distance !== "" && (
+                        <p className="bg-green-500 px-4 py-1 rounded-lg">
+                          Distance: {distance}
+                        </p>
+                      )}
+                      {duration !== "" && (
+                        <p className="bg-green-500 px-4 py-1 rounded-lg">
+                          Duration: {duration}
+                        </p>
+                      )}
+                    </div>
+
                     <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="description"
@@ -269,6 +358,7 @@ export default function OrderForm() {
                           defaultValue={""}
                           value={formData.description}
                           onChange={handleInputChange}
+                          required
                         />
                       </div>
                       {errors.description && (
@@ -283,7 +373,7 @@ export default function OrderForm() {
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-slate-900 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     Confirm
                   </button>
@@ -293,6 +383,21 @@ export default function OrderForm() {
           </div>
         </div>
       </div>
+
+      {isLoaded && (
+        <div className="flow-root m-12 h-96 border rounded-lg">
+          <GoogleMap
+            mapContainerStyle={{ width: "100%", height: "100%" }}
+            center={center}
+            zoom={10}
+          >
+            <MarkerF position={center} />
+            {directionsResponse && (
+              <DirectionsRenderer directions={directionsResponse} />
+            )}
+          </GoogleMap>
+        </div>
+      )}
 
       <div className="hidden sm:block" aria-hidden="true">
         <div className="py-5">
