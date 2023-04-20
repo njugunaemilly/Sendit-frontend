@@ -48,7 +48,7 @@ export default function OrderList() {
 
   return (
     <div className="h-screen">
-      <div className="border-b border-gray-200 flex justify-center gap-4 items-center">
+      <div className="border-b border-gray-200 flex justify-center gap-4 items-center p-4">
         <h1 className="text-3xl font-bold">Your Orders</h1>
         <span>
           <TruckIcon className="h-6 w-7 text-yellow-500" />
