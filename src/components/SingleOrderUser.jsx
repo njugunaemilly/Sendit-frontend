@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getParcels } from "../slices/parcelsSlice";
 import { useEffect } from "react";
+import Map from "./Map";
 
 export default function SingleOrderUser({ id }) {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export default function SingleOrderUser({ id }) {
   }, [dispatch]);
 
   if (loading) {
-    return <div className="h-screen">Loading...</div>;
+    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
   }
   let filteredParcel = [];
   filteredParcel = parcels.filter(
@@ -19,7 +20,7 @@ export default function SingleOrderUser({ id }) {
   );
 
   if (filteredParcel.length === 0) {
-    return <div className="h-screen">Loading...</div>;
+    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
   }
   return (
     <>
@@ -81,6 +82,7 @@ export default function SingleOrderUser({ id }) {
           </button>
         </div>
       </div>
+      <Map pickup_location={filteredParcel[0].pickup_location} destination={filteredParcel[0].destination}/>
     </>
   );
 }

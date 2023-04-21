@@ -4,6 +4,7 @@ import { Switch } from '@headlessui/react'
 import { getParcels } from "../slices/parcelsSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Map from "./Map";
 
 
 function classNames(...classes) {
@@ -118,6 +119,7 @@ export default function SingleOrderAdmin({ id }) {
   
         </div>
       </div>
+      <Map pickup_location={filteredParcel[0].pickup_location} destination={filteredParcel[0].destination}/>
     </>
   );
 }
