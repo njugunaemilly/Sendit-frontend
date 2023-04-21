@@ -69,12 +69,9 @@ function Nav() {
             Log out
           </button>
         )}
-        <li className="text-white text-3xl">
-          <BiUserCircle />
-        </li>
 
         {/* Hamburger */}
-        <div onClick={handleClick} className="z-10 inline-flex text-3xl justify-center gap-x-1.5  hover:bg-gray-200" id="menu-button" aria-expanded="true" aria-haspopup="true">
+        <div onClick={handleClick} className="z-10 inline-flex text-indigo-500 text-3xl justify-center gap-x-1.5  hover:bg-gray-200" id="menu-button" aria-expanded="true" aria-haspopup="true">
           {!nav ? <BiUserCircle /> : <BiUserCircle />}
         </div>
       </ul>
@@ -83,12 +80,12 @@ function Nav() {
         className={
           !nav
             ? "hidden"
-            : "absolute right-0 z-10 mt-2 w-60 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            : "absolute right-0 z-10 mt-2 w-60 origin-top-right rounded-md bg-slate-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             
         }
         role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
       >
-        <li className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+        <li className="text-gray-200 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
           <Link
             onClick={() => setNav(false)}
             to="/"
@@ -99,7 +96,7 @@ function Nav() {
             Home
           </Link>
         </li>
-        <li className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+        <li className="text-gray-200 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
           <Link
             onClick={() => setNav(false)}
             to="/about"
@@ -109,7 +106,7 @@ function Nav() {
             About
           </Link>
         </li>
-        <button onClick={logout} class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
+        <button onClick={logout} class="text-gray-200 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
             Log out
         </button>
       </ul>
