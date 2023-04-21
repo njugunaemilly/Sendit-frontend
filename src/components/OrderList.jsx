@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getParcels } from "../slices/parcelsSlice";
 import {
@@ -8,12 +8,16 @@ import {
   ArrowPathIcon,
 } from "@heroicons/react/20/solid";
 import { Link, useNavigate } from "react-router-dom";
+import Paginate from './Paginate';
 
 export default function OrderList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { parcels, loading } = useSelector((state) => state.parcels);
   const { user } = useSelector((state) => state.loggedIn);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [parcelsPerPage] = useState(1)
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     dispatch(getParcels());
@@ -96,6 +100,7 @@ export default function OrderList() {
             </div>
           </div>
         ))}
+        <Paginate parcelsPerPage={parcelsPerPage} filteredParcels={filteredParcels.length} paginate ={paginate}/>
       </div>
     </div>
   );
