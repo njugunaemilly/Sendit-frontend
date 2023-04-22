@@ -71,43 +71,85 @@ const Nav = () => {
             </h1>
           </Link>
 
-          {/* Menu button */}
-          <div className="md:hidden">
-            <button
-              className="menu-btn text-gray-500 hover:text-gray-800"
-              onClick={() => setState(!state)}
-            >
-              {state ? (
+          {/* Dropdown */}
+          <div className="relative inline-block m-2 text-left md:hidden">
+            <div onClick={handleClick}>
+              <button
+                type="button"
+                className="profile-btn inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-slate-900 hover:text-white"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+              >
+                <BiUserCircle size={20} />
+                <h1>{user.username}</h1>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="-mr-1 h-5 w-5 text-gray-400"
                   viewBox="0 0 20 20"
                   fill="currentColor"
+                  aria-hidden="true"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd"
                   />
                 </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
+              </button>
+            </div>
+
+            <div
+              className={
+                !nav
+                  ? "hidden"
+                  : "absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              }
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="menu-button"
+              tabindex="-1"
+            >
+              <div className="py-1" role="none">
+                {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
+                <Link to="/"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-0"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-              )}
-            </button>
+                  Home
+                </Link>
+                <Link
+                  to="/about"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-1"
+                >
+                  About
+                </Link>
+                <Link 
+                  to="/contact-us"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-2"
+                >
+                  Contact Us
+                </Link>
+                <button
+                  className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-3"
+                  onClick={logout}
+                >
+                  Log out
+                </button>
+              </div>
+            </div>
           </div>
+
         </div>
 
         {/* Navigation bar */}
@@ -117,7 +159,7 @@ const Nav = () => {
           } `}
         >
           {/* Links */}
-          <ul className="justify-center text-xl items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
+          <ul className="justify-center text-xl items-center space-y-6 md:flex md:space-x-6 md:space-y-0 sm:hidden">
             <Link to="/about" className="text-gray-900 hover:text-gray-300">
               About
             </Link>
@@ -138,12 +180,7 @@ const Nav = () => {
           </ul>
 
           <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
-            {user.id && (
-              <button onClick={logout} className="text-black">
-                Log out
-              </button>
-            )}
-
+            
             {!user.id && (
               <Link
                 to="/login" className="text-black"
@@ -215,33 +252,35 @@ const Nav = () => {
             >
               <div className="py-1" role="none">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
-                <a
-                  href="/user"
+                <Link to="/"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-0"
                 >
-                  Account
-                </a>
-                <a
-                  href="#"
+                  Home
+                </Link>
+
+                <Link
+                  to="/about"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-1"
                 >
-                  Support
-                </a>
-                <a
-                  href="#"
+                  About
+                </Link>
+
+                <Link 
+                  to="/contact-us"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-2"
                 >
-                  License
-                </a>
+                  Contact Us
+                </Link>
+                {user.id &&(
                 <button
                   className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
@@ -251,9 +290,11 @@ const Nav = () => {
                 >
                   Log out
                 </button>
+                )}
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </nav>
