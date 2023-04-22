@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTruck } from "react-icons/fa";
-import { FaBars, FaTimes } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../slices/loggedInUserSlice";
 import Swal from "sweetalert2";
-import DropdownProfile from "./DropdownProfile";
 
-function Nav() {
+const Nav = () => {
   const { user } = useSelector((state) => state.loggedIn);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [state, setState] = useState(false);
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
@@ -44,74 +43,221 @@ function Nav() {
       setTimeout(() => navigate("/login"), 1500);
     }
   }
+
+  useEffect(() => {
+    document.onclick = (e) => {
+      const target = e.target;
+      if (!target.closest(".menu-btn")) setState(false);
+      if (!target.closest(".profile-btn")) setNav(false);
+    };
+  }, []);
+
   return (
-    <div className="bg-slate-900 p-3 font-serif">
-      <ul className="flex flex-row justify-evenly">
-        <Link to="/" className="flex gap-2 items-center">
-          <span className="text-3xl text-indigo-500">
-            <FaTruck />
-          </span>
-          <h1 className="text-white font-mono font-bold text-xl">SENDIT</h1>
-        </Link>
-        <Link to="/about" className="text-white">
-          About
-        </Link>
-        <Link to="/contact-us" className="text-white">
-          Contact Us
-        </Link>
-        {user.id && (
-          <button onClick={orders} className="text-white">
-            {user.user_type === "Customer" ? "Your Orders" : "All Orders"}
-          </button>
-        )}
-        {user.id && (
-          <button onClick={logout} className="text-white">
-            Log out
-          </button>
-        )}
+    <nav
+      className={`bg-white pb-0 md:text-sm ${
+        state
+          ? "shadow-lg rounded-xl border mx-0 mt-2 md:shadow-none md:border-none md:mx-2 md:mt-0"
+          : ""
+      }`}
+    >
+      <div className="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
+        <div className="flex items-center justify-between py-5 md:block">
+          <Link to="/" className="flex gap-2 items-center">
+            <span className="text-3xl text-indigo-500">
+              <FaTruck />
+            </span>
+            <h1 className="text-indigo-500 font-mono font-bold text-xl">
+              SENDIT
+            </h1>
+          </Link>
 
-        {/* Hamburger */}
-        <div onClick={handleClick} className="z-10 inline-flex text-indigo-500 text-3xl justify-center gap-x-1.5  hover:bg-gray-200" id="menu-button" aria-expanded="true" aria-haspopup="true">
-          {!nav ? <BiUserCircle /> : <BiUserCircle />}
+          {/* Menu button */}
+          <div className="md:hidden">
+            <button
+              className="menu-btn text-gray-500 hover:text-gray-800"
+              onClick={() => setState(!state)}
+            >
+              {state ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
-      </ul>
-      {/* Dropdown menu */}
-      <ul
-        className={
-          !nav
-            ? "hidden"
-            : "absolute right-0 z-10 mt-2 w-60 origin-top-right rounded-md bg-slate-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-            
-        }
-        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
-      >
-        <li className="text-gray-200 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
-          <Link
-            onClick={() => setNav(false)}
-            to="/"
-            smooth={true}
-            duration={500}
 
-          >
-            Home
-          </Link>
-        </li>
-        <li className="text-gray-200 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
-          <Link
-            onClick={() => setNav(false)}
-            to="/about"
-            smooth={true}
-            duration={500}
-          >
-            About
-          </Link>
-        </li>
-        <button onClick={logout} class="text-gray-200 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
-            Log out
-        </button>
-      </ul>
-    </div>
+        {/* Navigation bar */}
+        <div
+          className={`flex-1 items-center mt-8 md:mt-0 md:flex ${
+            state ? "block" : "hidden"
+          } `}
+        >
+          {/* Links */}
+          <ul className="justify-center text-xl items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
+            <Link to="/about" className="text-gray-900 hover:text-gray-300">
+              About
+            </Link>
+            <Link
+              to="/contact-us"
+              className="text-gray-900 hover:text-gray-300"
+            >
+              Contact Us
+            </Link>
+
+            {/* When User Logs in */}
+
+            {user.id && (
+              <button onClick={orders} className="text-black">
+                {user.user_type === "Customer" ? "Your Orders" : "All Orders"}
+              </button>
+            )}
+          </ul>
+
+          <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
+            {user.id && (
+              <button onClick={logout} className="text-black">
+                Log out
+              </button>
+            )}
+
+            {!user.id && (
+              <Link
+                to="/login" className="text-black"
+              >
+                Log in
+              </Link>
+            )}
+
+            {!user.id && (
+            
+              <Link
+                to="/sign-up"
+                className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex"
+              >
+              Sign in
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              </Link>
+            
+            )}
+          </div>
+          {/* Dropdown */}
+          <div className="relative inline-block m-2 text-left">
+            <div onClick={handleClick}>
+              <button
+                type="button"
+                className="profile-btn inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-slate-900 hover:text-white"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+              >
+                <BiUserCircle size={20} />
+                <h1>{user.username}</h1>
+                <svg
+                  className="-mr-1 h-5 w-5 text-gray-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div
+              className={
+                !nav
+                  ? "hidden"
+                  : "absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              }
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="menu-button"
+              tabindex="-1"
+            >
+              <div className="py-1" role="none">
+                {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
+                <a
+                  href="/user"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-0"
+                >
+                  Account
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-1"
+                >
+                  Support
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-2"
+                >
+                  License
+                </a>
+                <button
+                  className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-3"
+                  onClick={logout}
+                >
+                  Log out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
-}
+};
 
 export default Nav;
