@@ -165,7 +165,7 @@ const Nav = () => {
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
                 <a
                   href="#"
-                  className="text-gray-700 block px-4 py-2 text-sm"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-0"
@@ -174,7 +174,7 @@ const Nav = () => {
                 </a>
                 <a
                   href="#"
-                  className="text-gray-700 block px-4 py-2 text-sm"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-1"
@@ -183,7 +183,7 @@ const Nav = () => {
                 </a>
                 <a
                   href="#"
-                  className="text-gray-700 block px-4 py-2 text-sm"
+                  className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-2"
@@ -192,7 +192,7 @@ const Nav = () => {
                 </a>
                 <button
                     type="submit"
-                    className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none"
+                    className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     role="menuitem"
                     tabindex="-1"
                     id="menu-item-3"
