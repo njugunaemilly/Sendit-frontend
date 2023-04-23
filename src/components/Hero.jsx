@@ -77,11 +77,22 @@ export default function Hero() {
             </div>
           </div>
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Take Control of your Delivery Experience
-            </h1>
+            {user.id && (
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                Welcome back,{" "}
+                <span className="text-gray-700">{user.username}</span>
+              </h1>
+            )}
+            {!user.id && (
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                Take Control of your Delivery Experience
+              </h1>
+            )}
+
             <p className="mt-6 text-lg leading-8 text-gray-300">
-              Get the quickest and most affordable tailor made delivery solutions. A service that suits you is just a click of a button away.
+              Get the quickest and most affordable tailor made delivery
+              solutions. A service that suits you is just a click of a button
+              away.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               {!user.id && (

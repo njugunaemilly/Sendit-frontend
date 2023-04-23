@@ -15,9 +15,7 @@ export default function SingleOrderUser({ id }) {
     return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
   }
   let filteredParcel = [];
-  filteredParcel = parcels.filter(
-    (parcel) => parcel.id === parseInt(id)
-  );
+  filteredParcel = parcels.filter((parcel) => parcel.id === parseInt(id));
 
   if (filteredParcel.length === 0) {
     return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
@@ -44,35 +42,44 @@ export default function SingleOrderUser({ id }) {
         <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
             <div className="sm:col-span-1">
-              <dt className="text-sm font-medium text-gray-500">Parcel Title</dt>
-              <dd className="mt-1 text-sm text-gray-900">{filteredParcel[0].parcel_name}</dd>
+              <dt className="text-sm font-medium text-gray-500">
+                Parcel Title
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900">
+                {filteredParcel[0].parcel_name}
+              </dd>
             </div>
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">Amount Due</dt>
-              <dd className="mt-1 text-sm text-gray-900">Ksh: {filteredParcel[0].price}</dd>
+              <dd className="mt-1 text-sm text-gray-900">
+                Ksh: {filteredParcel[0].price}
+              </dd>
             </div>
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">
                 Email address
               </dt>
-              <dd className="mt-1 text-sm text-gray-900">{filteredParcel[0].user.email}</dd>
+              <dd className="mt-1 text-sm text-gray-900">
+                {filteredParcel[0].user.email}
+              </dd>
             </div>
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">
                 Delivery Location
               </dt>
               <dd className="mt-1 text-sm text-gray-900">
-              {`${filteredParcel[0].pickup_location} - to - ${filteredParcel[0].destination}`}
+                {`${filteredParcel[0].pickup_location} - to - ${filteredParcel[0].destination}`}
               </dd>
             </div>
             <div className="sm:col-span-2">
               <dt className="text-sm font-medium text-gray-500">About</dt>
               <dd className="mt-1 text-sm text-gray-900">
-              {filteredParcel[0].description}
+                {filteredParcel[0].description}
               </dd>
             </div>
           </dl>
         </div>
+
         <div className="py-8">
           <button
             type="button"
@@ -82,7 +89,10 @@ export default function SingleOrderUser({ id }) {
           </button>
         </div>
       </div>
-      <Map pickup_location={filteredParcel[0].pickup_location} destination={filteredParcel[0].destination}/>
+      <Map
+        pickup_location={filteredParcel[0].pickup_location}
+        destination={filteredParcel[0].destination}
+      />
     </>
   );
 }
