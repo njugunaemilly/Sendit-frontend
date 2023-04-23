@@ -111,7 +111,8 @@ const Nav = () => {
             >
               <div className="py-1" role="none">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
-                <Link to="/"
+                <Link
+                  to="/"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
@@ -128,7 +129,7 @@ const Nav = () => {
                 >
                   About
                 </Link>
-                <Link 
+                <Link
                   to="/contact-us"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
@@ -137,19 +138,20 @@ const Nav = () => {
                 >
                   Contact Us
                 </Link>
-                <button
-                  className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-3"
-                  onClick={logout}
-                >
-                  Log out
-                </button>
+                {user.id && (
+                  <button
+                    className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="menu-item-3"
+                    onClick={logout}
+                  >
+                    Log out
+                  </button>
+                )}
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Navigation bar */}
@@ -180,36 +182,31 @@ const Nav = () => {
           </ul>
 
           <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
-            
             {!user.id && (
-              <Link
-                to="/login" className="text-black"
-              >
+              <Link to="/login" className="text-black">
                 Log in
               </Link>
             )}
 
             {!user.id && (
-            
               <Link
                 to="/sign-up"
                 className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex"
               >
-              Sign in
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                  clipRule="evenodd"
-                />
-              </svg>
+                Sign in
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                    clipRule="evenodd"
+                  />
+                </svg>
               </Link>
-            
             )}
           </div>
           {/* Dropdown */}
@@ -252,7 +249,9 @@ const Nav = () => {
             >
               <div className="py-1" role="none">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
-                <Link to="/"
+                <h1 className="text-gray-700 first-letter:block px-4 py-2 text-sm font-medium">{user.email}</h1>
+                <Link
+                  to="/"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   tabindex="-1"
@@ -271,7 +270,7 @@ const Nav = () => {
                   About
                 </Link>
 
-                <Link 
+                <Link
                   to="/contact-us"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
@@ -280,21 +279,20 @@ const Nav = () => {
                 >
                   Contact Us
                 </Link>
-                {user.id &&(
-                <button
-                  className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-3"
-                  onClick={logout}
-                >
-                  Log out
-                </button>
+                {user.id && (
+                  <button
+                    className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="menu-item-3"
+                    onClick={logout}
+                  >
+                    Log out
+                  </button>
                 )}
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </nav>
