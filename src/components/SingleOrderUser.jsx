@@ -80,17 +80,14 @@ export default function SingleOrderUser({ id }) {
           </dl>
         </div>
 
-        {/* Cancellation status */}
-        {filteredParcel[0].status.status === "Pending" && (
-          <div className="py-8">
-            <button
-              type="button"
-              className="inline-flex ml-6 items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2  text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              Cancel Delivery
-            </button>
-          </div>
-        )}
+        <div className="py-8">
+          <button
+            type="button"
+            className="inline-flex ml-6 items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2  text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Cancel Delivery
+          </button>
+        </div>
       </div>
       <Map
         pickup_location={filteredParcel[0].pickup_location}
