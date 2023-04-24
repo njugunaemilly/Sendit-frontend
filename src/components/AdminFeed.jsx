@@ -96,7 +96,7 @@ export default function UserFeed({ id }) {
                   <div>
                     <p className="text-sm text-gray-500">{event.content} </p>
                   </div>
-                  <div className="whitespace-nowrap text-sm text-gray-500 flex gap-2">
+                  <div className="whitespace-nowrap text-sm text-gray-500">
                     <Moment fromNow>
                       {filteredParcel[0].status.updated_at}
                     </Moment>
@@ -104,12 +104,6 @@ export default function UserFeed({ id }) {
                       String(event.content) && (
                       <CheckIcon className="h-5 w-5 text-green-500 mr-2" />
                     )}
-                    <button
-                      href="#"
-                      className="font-medium text-indigo-600 hover:text-indigo-500"
-                    >
-                      Edit
-                    </button>
                   </div>
                 </div>
               </div>

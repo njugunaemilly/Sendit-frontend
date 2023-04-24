@@ -27,7 +27,7 @@ export default function SingleOrderUser({ id }) {
           {`${filteredParcel[0].pickup_location} - to - ${filteredParcel[0].destination}`}
         </h3>
         <h3 className="text-2xl font-medium leading-9 text-gray-900">
-          {filteredParcel[0].status.status}
+          Status: {filteredParcel[0].status.status}
         </h3>
       </div>
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
