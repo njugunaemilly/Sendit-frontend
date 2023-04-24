@@ -181,6 +181,20 @@ export default function OrderForm() {
                 Please provide accurate information for your delivery.
               </p>
             </div>
+            <div className="rounded-xl relative mt-6">
+              {/* Overlay */}
+              <div className="absolute w-full h-full bg-black/50 rounded-xl text-white">
+                <p className="font-bold text-2xl px-2 pt-4">
+                  Ensuring Your Convenience
+                </p>
+                <p className="px-2">Whenever Wherever!</p>
+              </div>
+              <img
+                className="max-h-[160px] md:max-h-[200px] w-full object-cover rounded-xl"
+                src="https://images.pexels.com/photos/3051551/pexels-photo-3051551.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="/"
+              />
+            </div>
           </div>
 
           <div className="mt-5 md:col-span-2 md:mt-4 ">
