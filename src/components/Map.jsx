@@ -3,7 +3,6 @@ import {
   GoogleMap,
   MarkerF,
   useJsApiLoader,
-  Autocomplete,
   DirectionsRenderer,
 } from "@react-google-maps/api";
 
@@ -58,14 +57,20 @@ function Map({ destination, pickup_location }) {
     <>
       <div className="flex justify-evenly mt-8">
         {distance !== "" && (
-          <p className="bg-indigo-600 px-4 py-1 rounded-sm">
-            Distance: {distance}
-          </p>
+          <div className="sm:col-span-1">
+            <dt className="text-sm font-medium text-gray-500">
+              Delivery details
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">Distance: {distance}</dd>
+          </div>
         )}
         {duration !== "" && (
-          <p className="bg-indigo-600 px-4 py-1 rounded-sm">
-            Duration: {duration}
-          </p>
+          <div className="sm:col-span-1">
+            <dt className="text-sm font-medium text-gray-500">
+              Delivery details
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900">Duration: {duration}</dd>
+          </div>
         )}
       </div>
       <div className="flow-root m-12 h-96 border rounded-lg">
