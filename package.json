@@ -2,7 +2,7 @@
   "name": "sendit-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "https://sendit-qaq4.onrender.com",
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
