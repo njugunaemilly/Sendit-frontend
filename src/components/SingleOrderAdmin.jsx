@@ -58,7 +58,7 @@ export default function SingleOrderAdmin({ id }) {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Location successfully",
+          title: "Location successfully updated",
           showConfirmButton: false,
           timer: 1500,
         });

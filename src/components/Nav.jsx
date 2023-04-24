@@ -54,7 +54,7 @@ const Nav = () => {
 
   return (
     <nav
-      className={`bg-white pb-0 md:text-sm ${
+      className={`bg-slate-900 pb-0 md:text-sm ${
         state
           ? "shadow-lg rounded-xl border mx-0 mt-2 md:shadow-none md:border-none md:mx-2 md:mt-0"
           : ""
@@ -162,12 +162,12 @@ const Nav = () => {
         >
           {/* Links */}
           <ul className="justify-center text-xl items-center space-y-6 md:flex md:space-x-6 md:space-y-0 sm:hidden">
-            <Link to="/about" className="text-gray-900 hover:text-gray-300">
+            <Link to="/about" className="text-white hover:text-gray-500">
               About
             </Link>
             <Link
               to="/contact-us"
-              className="text-gray-900 hover:text-gray-300"
+              className="text-white hover:text-gray-500"
             >
               Contact Us
             </Link>
@@ -175,7 +175,7 @@ const Nav = () => {
             {/* When User Logs in */}
 
             {user.id && (
-              <button onClick={orders} className="text-black">
+              <button onClick={orders} className="text-white">
                 {user.user_type === "Customer" ? "Your Orders" : "All Orders"}
               </button>
             )}
@@ -183,7 +183,7 @@ const Nav = () => {
 
           <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
             {!user.id && (
-              <Link to="/login" className="text-black">
+              <Link to="/login" className="text-white">
                 Log in
               </Link>
             )}
@@ -193,7 +193,7 @@ const Nav = () => {
                 to="/sign-up"
                 className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex"
               >
-                Sign in
+                Sign up
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -249,7 +249,6 @@ const Nav = () => {
             >
               <div className="py-1" role="none">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
-                <h1 className="text-gray-700 first-letter:block px-4 py-2 text-sm font-medium">{user.email}</h1>
                 <Link
                   to="/"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
