@@ -90,9 +90,9 @@ const Nav = () => {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </button>
@@ -107,7 +107,7 @@ const Nav = () => {
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
-              tabindex="-1"
+              tabIndex="-1"
             >
               <div className="py-1" role="none">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
@@ -115,7 +115,7 @@ const Nav = () => {
                   to="/"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  tabindex="-1"
+                  tabIndex="-1"
                   id="menu-item-0"
                 >
                   Home
@@ -124,7 +124,7 @@ const Nav = () => {
                   to="/about"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  tabindex="-1"
+                  tabIndex="-1"
                   id="menu-item-1"
                 >
                   About
@@ -133,16 +133,26 @@ const Nav = () => {
                   to="/contact-us"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  tabindex="-1"
+                  tabIndex="-1"
                   id="menu-item-2"
                 >
                   Contact Us
                 </Link>
                 {user.id && (
                   <button
+                    onClick={orders}
+                    className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    {user.user_type === "Customer"
+                      ? "Your Orders"
+                      : "All Orders"}
+                  </button>
+                )}
+                {user.id && (
+                  <button
                     className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     role="menuitem"
-                    tabindex="-1"
+                    tabIndex="-1"
                     id="menu-item-3"
                     onClick={logout}
                   >
@@ -165,10 +175,7 @@ const Nav = () => {
             <Link to="/about" className="text-white hover:text-gray-500">
               About
             </Link>
-            <Link
-              to="/contact-us"
-              className="text-white hover:text-gray-500"
-            >
+            <Link to="/contact-us" className="text-white hover:text-gray-500">
               Contact Us
             </Link>
 
@@ -228,9 +235,9 @@ const Nav = () => {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </button>
@@ -245,7 +252,7 @@ const Nav = () => {
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
-              tabindex="-1"
+              tabIndex="-1"
             >
               <div className="py-1" role="none">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
@@ -253,7 +260,7 @@ const Nav = () => {
                   to="/"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  tabindex="-1"
+                  tabIndex="-1"
                   id="menu-item-0"
                 >
                   Home
@@ -263,7 +270,7 @@ const Nav = () => {
                   to="/about"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  tabindex="-1"
+                  tabIndex="-1"
                   id="menu-item-1"
                 >
                   About
@@ -273,16 +280,26 @@ const Nav = () => {
                   to="/contact-us"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
-                  tabindex="-1"
+                  tabIndex="-1"
                   id="menu-item-2"
                 >
                   Contact Us
                 </Link>
                 {user.id && (
                   <button
+                    onClick={orders}
+                    className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    {user.user_type === "Customer"
+                      ? "Your Orders"
+                      : "All Orders"}
+                  </button>
+                )}
+                {user.id && (
+                  <button
                     className="text-gray-700 block w-full px-4 py-2 text-left text-sm border-none hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     role="menuitem"
-                    tabindex="-1"
+                    tabIndex="-1"
                     id="menu-item-3"
                     onClick={logout}
                   >

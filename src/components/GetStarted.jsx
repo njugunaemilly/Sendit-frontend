@@ -5,8 +5,8 @@ export default function GetStarted() {
   const { user } = useSelector((state) => state.loggedIn);
   const navigate = useNavigate();
 
-  function makeOrder () {
-    if(user.id){
+  function makeOrder() {
+    if (user.id) {
       navigate("/make-order");
     } else {
       Swal.fire({
@@ -25,15 +25,18 @@ export default function GetStarted() {
             How To Get Started.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-            Three easy steps to get you satrted on your new delivery journey.      
-            <ol>
-           <li> 1. Create an Account </li>
+            Three easy steps to get you satrted on your new delivery journey.
+          </p>
+          <ol className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
+            <li> 1. Create an Account </li>
             <li>2. Fill out the order form </li>
             <li>3. Confirm your order and sit tight</li>
-            </ol>
-          </p>
+          </ol>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <button onClick={makeOrder} className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+            <button
+              onClick={makeOrder}
+              className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
               Make an Order
             </button>
           </div>
