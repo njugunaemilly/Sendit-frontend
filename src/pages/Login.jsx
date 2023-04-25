@@ -25,7 +25,6 @@ function Login() {
 
   function login(e) {
     e.preventDefault();
-    console.log(formData);
     fetch("/login", {
       method: "POST",
       headers: {
@@ -35,7 +34,6 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.errors);
         if (!data.errors) {
           Swal.fire({
             position: "top-end",

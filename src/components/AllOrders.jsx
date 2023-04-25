@@ -4,7 +4,6 @@ import { getParcels } from "../slices/parcelsSlice";
 import {
   CheckIcon,
   TruckIcon,
-  UserIcon,
   XCircleIcon,
   ArrowPathIcon
 } from "@heroicons/react/20/solid";

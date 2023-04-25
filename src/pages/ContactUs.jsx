@@ -210,7 +210,6 @@ export default function ContactUs() {
                       aria-describedby="how-can-we-help-description"
                       rows={4}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      defaultValue={""}
                       value={formData.help}
                       onChange={handleInputChange}
                       required
