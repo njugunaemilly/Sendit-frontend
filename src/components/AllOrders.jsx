@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getParcels } from "../slices/parcelsSlice";
 import {
@@ -9,6 +9,7 @@ import {
   ArrowPathIcon
 } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router-dom";
+import Paginate from "./Paginate";
 
 
 
@@ -16,10 +17,18 @@ export default function AllOrders() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { parcels, loading } = useSelector((state) => state.parcels);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getParcels());
-  }, [dispatch]);
+    dispatch(getParcels(currentPage));
+  }, [dispatch,currentPage, setCurrentPage]);
+
+  const parcelPerPage = 5;
+	const totalParcels = parcels.length;
+
+	const indexOfLastParcel = currentPage * parcelPerPage;
+	const indexOfFirstParcel = indexOfLastParcel - parcelPerPage;
+	const filterParcels = parcels.slice(indexOfFirstParcel, indexOfLastParcel);
 
 
   if (loading) {
@@ -42,7 +51,7 @@ export default function AllOrders() {
       </div>
 
       <div className="container mx-auto mt-4">
-        {parcels.map((parcel) => (
+        {filterParcels.map((parcel) => (
           <div key={parcel.id} className="border-b border-gray-200 py-4">
             <h1 onClick={singleOrder} id={parcel.id} className="text-xl underline font-medium leading-6 text-gray-900 mb-2 cursor-pointer">
               {parcel.parcel_name}
@@ -79,6 +88,22 @@ export default function AllOrders() {
           </div>
         ))}
       </div>
+      <div className="container">
+          
+            
+          
+
+       
+          <Paginate
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalParcels={totalParcels}
+            parcelPerPage={parcelPerPage}
+          />
+        
+        
+      </div>
     </div>
   );
 }
+
