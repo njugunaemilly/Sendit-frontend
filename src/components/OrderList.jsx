@@ -16,16 +16,22 @@ export default function OrderList() {
   const { parcels, loading } = useSelector((state) => state.parcels);
   const { user } = useSelector((state) => state.loggedIn);
   const [currentPage, setCurrentPage] = useState(1)
-  const [parcelsPerPage] = useState(1)
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
 
   useEffect(() => {
     dispatch(getParcels());
-  }, [dispatch]);
+  }, [dispatch,currentPage, setCurrentPage]);
 
   const filteredParcels = parcels.filter(
     (parcel) => parcel.user_id === user.id
   );
+  const parcelPerPage = 5;
+	const totalParcels = filteredParcels.length;
+
+	const indexOfLastParcel = currentPage * parcelPerPage;
+	const indexOfFirstParcel = indexOfLastParcel - parcelPerPage;
+	const filterParcels = filteredParcels.slice(indexOfFirstParcel, indexOfLastParcel);
+  
 
   if (loading) {
     return <div className="h-screen">Loading...</div>;
@@ -60,7 +66,7 @@ export default function OrderList() {
       </div>
 
       <div className="container mx-auto mt-4">
-        {filteredParcels.map((parcel) => (
+        {filterParcels.map((parcel) => (
           <div key={parcel.id} className="border-b border-gray-200 py-4">
             <h1
               onClick={singleOrder}
@@ -99,8 +105,22 @@ export default function OrderList() {
               </div>
             </div>
           </div>
-        ))}
-        <Paginate parcelsPerPage={parcelsPerPage} filteredParcels={filteredParcels.length} paginate ={paginate}/>
+        ))}     
+      </div>
+      <div className="container">
+          
+            
+          
+
+       
+          <Paginate
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalParcels={totalParcels}
+            parcelPerPage={parcelPerPage}
+          />
+        
+        
       </div>
     </div>
   );
