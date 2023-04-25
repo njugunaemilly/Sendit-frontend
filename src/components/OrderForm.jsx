@@ -102,7 +102,7 @@ export default function OrderForm() {
   function createOrder(e) {
     e.preventDefault();
 
-    fetch("/parcels", {
+    fetch("api/parcels", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

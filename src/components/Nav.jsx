@@ -16,7 +16,7 @@ const Nav = () => {
 
   function logout() {
     if (user.id) {
-      fetch("/logout", {
+      fetch("api/logout", {
         method: "delete",
       }).then((res) => {
         if (res.status === 204) {

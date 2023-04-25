@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const getParcels = createAsyncThunk("parcels/getParcels", async () => {
-    return fetch("/parcels")
+    return fetch("api/parcels")
     .then(res => res.json());
 })
 const loggedInUser = createSlice({

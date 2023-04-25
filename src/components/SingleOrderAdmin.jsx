@@ -47,7 +47,7 @@ export default function SingleOrderAdmin({ id }) {
 
   function updateLocation(e) {
     e.preventDefault();
-    fetch(`/statuses/${filteredParcel[0].status.id}`, {
+    fetch(`api/statuses/${filteredParcel[0].status.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export default function SingleOrderAdmin({ id }) {
 
   function updateStatus(e) {
     e.preventDefault();
-    fetch(`/statuses/${filteredParcel[0].status.id}`, {
+    fetch(`api/statuses/${filteredParcel[0].status.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -115,7 +115,7 @@ export default function SingleOrderAdmin({ id }) {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch(`/statuses/${filteredParcel[0].status.id}`, {
+        fetch(`api/statuses/${filteredParcel[0].status.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

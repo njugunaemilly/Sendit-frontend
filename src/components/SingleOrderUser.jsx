@@ -46,7 +46,7 @@ export default function SingleOrderUser({ id }) {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch(`/statuses/${filteredParcel[0].status.id}`, {
+        fetch(`api/statuses/${filteredParcel[0].status.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export default function SingleOrderUser({ id }) {
   function updateLocation(e) {
     e.preventDefault();
     console.log(location);
-    fetch(`/parcels/${filteredParcel[0].id}`, {
+    fetch(`api/parcels/${filteredParcel[0].id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
