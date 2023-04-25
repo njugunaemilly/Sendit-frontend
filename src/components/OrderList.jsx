@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getParcels } from "../slices/parcelsSlice";
 import {
@@ -8,20 +8,30 @@ import {
   ArrowPathIcon,
 } from "@heroicons/react/20/solid";
 import { Link, useNavigate } from "react-router-dom";
+import Paginate from './Paginate';
 
 export default function OrderList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { parcels, loading } = useSelector((state) => state.parcels);
   const { user } = useSelector((state) => state.loggedIn);
+  const [currentPage, setCurrentPage] = useState(1)
+
 
   useEffect(() => {
     dispatch(getParcels());
-  }, [dispatch]);
+  }, [dispatch,currentPage, setCurrentPage]);
 
   const filteredParcels = parcels.filter(
     (parcel) => parcel.user_id === user.id
   );
+  const parcelPerPage = 5;
+	const totalParcels = filteredParcels.length;
+
+	const indexOfLastParcel = currentPage * parcelPerPage;
+	const indexOfFirstParcel = indexOfLastParcel - parcelPerPage;
+	const filterParcels = filteredParcels.slice(indexOfFirstParcel, indexOfLastParcel);
+  
 
   if (loading) {
     return <div className="h-screen">Loading...</div>;
@@ -56,7 +66,7 @@ export default function OrderList() {
       </div>
 
       <div className="container mx-auto mt-4">
-        {filteredParcels.map((parcel) => (
+        {filterParcels.map((parcel) => (
           <div key={parcel.id} className="border-b border-gray-200 py-4">
             <h1
               onClick={singleOrder}
@@ -95,7 +105,22 @@ export default function OrderList() {
               </div>
             </div>
           </div>
-        ))}
+        ))}     
+      </div>
+      <div className="container">
+          
+            
+          
+
+       
+          <Paginate
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalParcels={totalParcels}
+            parcelPerPage={parcelPerPage}
+          />
+        
+        
       </div>
     </div>
   );
