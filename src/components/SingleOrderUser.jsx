@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Map from "./Map";
 import Swal from "sweetalert2";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function SingleOrderUser({ id }) {
   const { isLoaded } = useJsApiLoader({
@@ -22,13 +23,33 @@ export default function SingleOrderUser({ id }) {
   }, [dispatch]);
 
   if (loading) {
-    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
   let filteredParcel = [];
   filteredParcel = parcels.filter((parcel) => parcel.id === parseInt(id));
 
   if (filteredParcel.length === 0) {
-    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   const handlePlaceChanged = () => {

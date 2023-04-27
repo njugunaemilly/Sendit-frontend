@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Map from "./Map";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import Swal from "sweetalert2";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -31,7 +32,17 @@ export default function SingleOrderAdmin({ id }) {
   }, [dispatch]);
 
   if (loading) {
-    return <div className="h-screen">Loading...</div>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
   let filteredParcel = [];
   filteredParcel = parcels.filter((parcel) => parcel.id === parseInt(id));

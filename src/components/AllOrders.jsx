@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router-dom";
 import Paginate from "./Paginate";
+import BeatLoader from "react-spinners/BeatLoader";
 
 
 
@@ -31,7 +32,17 @@ export default function AllOrders() {
 
 
   if (loading) {
-    return <div className="h-screen">Loading...</div>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
 

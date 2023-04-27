@@ -42,21 +42,21 @@ export default function OrderForm() {
   const [errors, setErrors] = useState({});
 
   const weightClasses = [
-    { name: "Class 1", weightRange: { min: 1, max: 10 }, price: 100 },
-    { name: "Class 2", weightRange: { min: 11, max: 50 }, price: 200 },
-    { name: "Class 3", weightRange: { min: 51, max: 100 }, price: 300 },
-    { name: "Class 4", weightRange: { min: 101, max: 200 }, price: 400 },
-    { name: "Class 5", weightRange: { min: 201, max: 500 }, price: 500 },
-    { name: "Class 6", weightRange: { min: 501, max: 1000 }, price: 600 },
-    { name: "Class 7", weightRange: { min: 1001, max: 2000 }, price: 700 },
-    { name: "Class 8", weightRange: { min: 2001, max: 3000 }, price: 800 },
-    { name: "Class 9", weightRange: { min: 3001, max: 4000 }, price: 900 },
-    { name: "Class 10", weightRange: { min: 4001, max: 5000 }, price: 1000 },
-    { name: "Class 11", weightRange: { min: 5001, max: 6000 }, price: 1100 },
-    { name: "Class 12", weightRange: { min: 6001, max: 7000 }, price: 1200 },
-    { name: "Class 13", weightRange: { min: 7001, max: 8000 }, price: 1300 },
-    { name: "Class 14", weightRange: { min: 8001, max: 9000 }, price: 1400 },
-    { name: "Class 15", weightRange: { min: 9001, max: 10000 }, price: 1500 },
+    { name: "Class 1", weightRange: { min: 1, max: 10 }, price: 1000 },
+    { name: "Class 2", weightRange: { min: 11, max: 50 }, price: 2000 },
+    { name: "Class 3", weightRange: { min: 51, max: 100 }, price: 3000 },
+    { name: "Class 4", weightRange: { min: 101, max: 200 }, price: 4000 },
+    { name: "Class 5", weightRange: { min: 201, max: 500 }, price: 5000 },
+    { name: "Class 6", weightRange: { min: 501, max: 1000 }, price: 6000 },
+    { name: "Class 7", weightRange: { min: 1001, max: 2000 }, price: 7000 },
+    { name: "Class 8", weightRange: { min: 2001, max: 3000 }, price: 8000 },
+    { name: "Class 9", weightRange: { min: 3001, max: 4000 }, price: 9000 },
+    { name: "Class 10", weightRange: { min: 4001, max: 5000 }, price: 10000 },
+    { name: "Class 11", weightRange: { min: 5001, max: 6000 }, price: 11000 },
+    { name: "Class 12", weightRange: { min: 6001, max: 7000 }, price: 12000 },
+    { name: "Class 13", weightRange: { min: 7001, max: 8000 }, price: 13000 },
+    { name: "Class 14", weightRange: { min: 8001, max: 9000 }, price: 14000 },
+    { name: "Class 15", weightRange: { min: 9001, max: 10000 }, price: 15000 },
   ];
 
   function handleInputChange(event) {
@@ -94,7 +94,7 @@ export default function OrderForm() {
     }
     setFormData((prevState) => ({
       ...prevState,
-      price: selectedClass.price,
+      price: selectedClass.price + 1000,
       weight: e.target.value,
     }));
   }
@@ -340,18 +340,27 @@ export default function OrderForm() {
                         onClick={calculateRoute}
                         className="inline-flex justify-center rounded-md border border-transparent bg-slate-900 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-2"
                       >
-                        Route
+                        Calculate route
                       </button>
-
                       {distance !== "" && (
-                        <p className="bg-green-500 px-4 py-1 rounded-lg">
-                          Distance: {distance}
-                        </p>
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-medium text-gray-500 underline">
+                            Delivery details
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            Distance: {distance}
+                          </dd>
+                        </div>
                       )}
                       {duration !== "" && (
-                        <p className="bg-green-500 px-4 py-1 rounded-lg">
-                          Duration: {duration}
-                        </p>
+                        <div className="sm:col-span-1">
+                          <dt className="text-sm font-medium text-gray-500 underline">
+                            Delivery details
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            Duration: {duration}
+                          </dd>
+                        </div>
                       )}
                     </div>
 
