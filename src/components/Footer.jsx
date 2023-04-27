@@ -14,13 +14,13 @@ export default function Footer() {
         <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="pb-6">
-              <Link href={item.href} className="text-sm leading-6 text-white hover:text-gray-400">
+              <Link to={item.href} className="text-sm leading-6 text-white hover:text-gray-400">
                 {item.name}
               </Link>
             </div>
           ))}
         </nav>
-        <p className="mt-10 text-center text-xs leading-5 text-gray-500">
+        <p className="mt-10 text-center text-xs leading-5 text-white">
           &copy; 2023 SENDIT. All Rights Reserved.
         </p>
       </div>
