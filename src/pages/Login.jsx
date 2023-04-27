@@ -74,7 +74,7 @@ function Login() {
                     value={formData.username}
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                    placeholder="emmanuel_ke"
+                    placeholder="username"
                     required
                   />
                   {errors.username && (
@@ -92,7 +92,7 @@ function Login() {
                     type="password"
                     name="password"
                     id="password"
-                    placeholder="••••••••"
+                    placeholder="password"
                     value={formData.pasword}
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
