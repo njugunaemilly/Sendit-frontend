@@ -8,38 +8,52 @@ import {
   ArrowPathIcon,
 } from "@heroicons/react/20/solid";
 import { Link, useNavigate } from "react-router-dom";
-import Paginate from './Paginate';
+import Paginate from "./Paginate";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function OrderList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { parcels, loading } = useSelector((state) => state.parcels);
   const { user } = useSelector((state) => state.loggedIn);
-  const [currentPage, setCurrentPage] = useState(1)
-
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(getParcels());
-  }, [dispatch,currentPage, setCurrentPage]);
+  }, [dispatch, currentPage, setCurrentPage]);
 
   const filteredParcels = parcels.filter(
     (parcel) => parcel.user_id === user.id
   );
   const parcelPerPage = 5;
-	const totalParcels = filteredParcels.length;
+  const totalParcels = filteredParcels.length;
 
-	const indexOfLastParcel = currentPage * parcelPerPage;
-	const indexOfFirstParcel = indexOfLastParcel - parcelPerPage;
-	const filterParcels = filteredParcels.slice(indexOfFirstParcel, indexOfLastParcel);
-  
+  const indexOfLastParcel = currentPage * parcelPerPage;
+  const indexOfFirstParcel = indexOfLastParcel - parcelPerPage;
+  const filterParcels = filteredParcels.slice(
+    indexOfFirstParcel,
+    indexOfLastParcel
+  );
 
   if (loading) {
-    return <div className="h-screen">Loading...</div>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
   if (filteredParcels.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
-        <div className="text-center font-bold text-2xl">You have no orders.</div>
+        <div className="text-center font-bold text-2xl">
+          You have no orders.
+        </div>
         <div className="text-center font-bold text-xl">
           Go to the{" "}
           <Link to="/" className="text-blue-300">
@@ -105,22 +119,15 @@ export default function OrderList() {
               </div>
             </div>
           </div>
-        ))}     
+        ))}
       </div>
       <div className="container">
-          
-            
-          
-
-       
-          <Paginate
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            totalParcels={totalParcels}
-            parcelPerPage={parcelPerPage}
-          />
-        
-        
+        <Paginate
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalParcels={totalParcels}
+          parcelPerPage={parcelPerPage}
+        />
       </div>
     </div>
   );
