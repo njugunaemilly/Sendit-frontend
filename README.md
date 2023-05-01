@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+## SendIT Courier.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SendIT is a courier service that helps users deliver parcels to different destinations. It provides courier quotes(prices) based on weight categories. SendIT provides our user with a platform where they can get a quote on their parcels, create a delivery pickup and drop-off destination and track their order status online.
 
-## Available Scripts
+### MVP Features
+    1.User can create an account and log in.
+    2.User can create a parcel delivery order.
+    3.User can change the destination of a parcel delivery order.
+    4.User can cancel a parcel delivery order.
+    5.User can see the details of a delivery order.
+    6.Admin can change the status and present location of a parcel delivery order.
+    7.The application displays a Google Map with Markers showing the pickup location and the destination.
+    8.User gets real-time email notification when Admin changes the status of their parcel.
+    9.The application displays a Google Map with a line connecting both Markers (pickup location and the destination).
+    11.The application displays a Google Map with computed travel distance and journey duration between the pickup location and the destination.
+    12.User gets real-time email notification when Admin changes the present location of their parcel.
 
-In the project directory, you can run:
 
-### `npm start`
+### Technical Implementation.
+    Backend: Ruby on Rails
+    Database: PostgreSQL
+    Wireframes: Figma (mobile-friendly)
+    Frontend: ReactJS & Redux Toolkit (state management)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    The project is built using ReactJS and Redux Toolkit for the frontend and Ruby on Rails for the backend, with PostgreSQL as the database.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Conclusion
+    SendIT is a courier service that provides a simple solution for users to deliver parcels to different destinations. With features like real-time email notifications and Google Maps integration, users can easily keep track of their parcel deliveries.
