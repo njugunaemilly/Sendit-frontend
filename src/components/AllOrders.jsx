@@ -55,7 +55,7 @@ export default function AllOrders() {
     <div >
       <div className="border-b border-gray-200 flex justify-center gap-4 items-center">
         <h1  className="text-3xl font-bold">
-          Your Orders 
+          All Orders 
         </h1>
         <span><TruckIcon className="h-6 w-7 text-yellow-500"/></span>
       </div>
