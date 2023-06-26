@@ -1,7 +1,7 @@
 import { FaTruck } from "react-icons/fa";
 const About = () => {
   return (
-    <section className="h-screen m-4 grid grid-cols-1 gap-0 bg-blue-100 bg-opacity-25 md:grid-cols-2">
+    <section className=" m-4 grid grid-cols-1 gap-0 bg-blue-100 bg-opacity-25 md:grid-cols-2">
       <div className="flex flex-col items-start justify-center px-4 py-24 lg:px-20">
         <li className="flex gap-2 items-center">
           <span className="text-3xl text-indigo-500">
@@ -26,7 +26,7 @@ const About = () => {
       </div>
       <div>
         <img
-          src="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
+          src="https://images.unsplash.com/photo-1559297434-fae8a1916a79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
           alt="3 women looking at a laptop"
           className="object-cover w-full h-64 bg-gray-100 md:h-full"
           loading="lazy"

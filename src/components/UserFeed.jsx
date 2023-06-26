@@ -1,6 +1,7 @@
 import Moment from 'react-moment';
 import { useDispatch, useSelector } from "react-redux";
 import { getParcels } from "../slices/parcelsSlice";
+import BeatLoader from "react-spinners/BeatLoader";
 
 import {
   CheckIcon,
@@ -58,7 +59,17 @@ export default function UserFeed({id}) {
   }, [dispatch]);
 
   if (loading) {
-    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
   let filteredParcel = [];
   filteredParcel = parcels.filter(
@@ -66,7 +77,17 @@ export default function UserFeed({id}) {
   );
 
   if (filteredParcel.length === 0) {
-    return <h2 className="text-2xl text-center mt-2">Loading..</h2>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
   return (
     <div className="flow-root p-24 m-12 border rounded-lg">

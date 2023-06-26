@@ -79,7 +79,7 @@ export default function Hero() {
           <div className="text-center">
             {user.id && (
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                Welcome back,{" "}
+                Welcome,{" "}
                 <span className="text-gray-700">{user.username}</span>
               </h1>
             )}
