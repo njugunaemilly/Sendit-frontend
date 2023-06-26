@@ -19,7 +19,7 @@ export default function GetStarted() {
   }
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+      <div className="mx-auto max-w-8xl py-6 sm:px-6 sm:py-12 lg:px-8">
         <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
           <h2 className="mx-auto max-w-2xl text-4xl font-bold tracking-tight text-white">
             How To Get Started.

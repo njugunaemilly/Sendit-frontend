@@ -5,6 +5,7 @@ import {
   useJsApiLoader,
   DirectionsRenderer,
 } from "@react-google-maps/api";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function Map({ destination, pickup_location }) {
   const [directionsResponse, setDirectionsResponse] = useState(null);
@@ -33,7 +34,17 @@ function Map({ destination, pickup_location }) {
   }
 
   if (!isLoaded) {
-    return <h2 className="text-2xl text-center mt-2">Loading map..</h2>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={!isLoaded}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   async function calculateRoute() {

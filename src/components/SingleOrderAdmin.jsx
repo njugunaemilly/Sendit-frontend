@@ -48,7 +48,17 @@ export default function SingleOrderAdmin({ id }) {
   filteredParcel = parcels.filter((parcel) => parcel.id === parseInt(id));
 
   if (filteredParcel.length === 0) {
-    return <div className="h-screen">Loading...</div>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={loading}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   const handlePlaceChanged = () => {
@@ -66,6 +76,7 @@ export default function SingleOrderAdmin({ id }) {
       body: JSON.stringify({ location: location }),
     }).then((res) => {
       if (res.ok) {
+        dispatch(getParcels());
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -96,6 +107,7 @@ export default function SingleOrderAdmin({ id }) {
       body: JSON.stringify({ status: status }),
     }).then((res) => {
       if (res.ok) {
+        dispatch(getParcels());
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -134,6 +146,7 @@ export default function SingleOrderAdmin({ id }) {
           body: JSON.stringify({ status: "Cancelled" }),
         }).then((res) => {
           if (res.ok) {
+            dispatch(getParcels());
             Swal.fire("Updated", "", "success");
           } else {
             Swal.fire("Failed", "", "error");

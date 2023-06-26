@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { TruckIcon } from "@heroicons/react/20/solid";
+import BeatLoader from "react-spinners/BeatLoader";
 import {
   GoogleMap,
   MarkerF,
@@ -142,7 +143,17 @@ export default function OrderForm() {
   };
 
   if (!isLoaded) {
-    return <p>Loading map..</p>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <BeatLoader
+          loading={!isLoaded}
+          color="#4F46E5"
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   async function calculateRoute() {

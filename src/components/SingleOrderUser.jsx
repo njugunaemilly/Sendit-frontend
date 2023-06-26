@@ -75,6 +75,7 @@ export default function SingleOrderUser({ id }) {
           body: JSON.stringify({ status: "Cancelled" }),
         }).then((res) => {
           if (res.ok) {
+            dispatch(getParcels());
             Swal.fire("Updated", "", "success");
           } else {
             Swal.fire("Failed", "", "error");
@@ -88,7 +89,6 @@ export default function SingleOrderUser({ id }) {
 
   function updateLocation(e) {
     e.preventDefault();
-    console.log(location);
     fetch(`api/parcels/${filteredParcel[0].id}`, {
       method: "PATCH",
       headers: {
@@ -97,6 +97,7 @@ export default function SingleOrderUser({ id }) {
       body: JSON.stringify({ location: location }),
     }).then((res) => {
       if (res.ok) {
+        dispatch(getParcels());
         Swal.fire({
           position: "top-end",
           icon: "success",
