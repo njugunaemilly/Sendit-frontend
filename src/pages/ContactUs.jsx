@@ -237,7 +237,7 @@ export default function ContactUs() {
           </div>
         </div>
       </div>
-      {user.user_type !== "Customer" && <Messages />}
+      {user.id && user.user_type !== "Customer" && <Messages />}
       <Footer />
     </>
   );
