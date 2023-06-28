@@ -1,21 +1,20 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
-
-// const sgMail = require("@sendgrid/mail");
-// sgMail.setApiKey(
-//   "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"
-// );
+import Messages from "../components/Messages";
+import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function ContactUs() {
+  const { user } = useSelector((state) => state.loggedIn);
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
+    name: "",
     email: "",
     company: "",
     help: "",
     phone: "",
-    about_us: "",
+    about: "",
+    status: "Pending",
   });
 
   function handleInputChange(event) {
@@ -29,22 +28,32 @@ export default function ContactUs() {
   function contactUs(e) {
     e.preventDefault();
     console.log(formData);
-//     const msg = {
-//       to: "emmanuel.mutisya16@gmail.com",
-//       from: formData.email,
-//       subject: "Looking for information",
-//       html: `<h1>${formData.first_name} ${formData.last_name}</h1>
-//                 <p>${formData.help}</p>
-//                 <p>I heard about you from: ${formData.about_us}</p>
-//         `,
-//     };
-//     sgMail
-//   .send(msg).then(() => {
-//     console.log("Email sent");
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+    fetch("api/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formData }),
+    }).then((res) => {
+      if (res.ok) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Message sent successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          help: "",
+          phone: "",
+          about: "",
+          status: "Pending",
+        });
+      }
+    });
   }
   return (
     <>
@@ -73,41 +82,21 @@ export default function ContactUs() {
                 onSubmit={contactUs}
                 className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
               >
-                <div>
+                <div className="sm:col-span-2">
                   <label
                     htmlFor="first-name"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    First name
+                    Full name
                   </label>
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="first_name"
-                      id="first_name"
+                      name="name"
+                      id="name"
                       autoComplete="given-name"
-                      value={formData.first_name}
+                      value={formData.name}
                       onChange={handleInputChange}
-                      required
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="last-name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Last name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="last_name"
-                      id="last_name"
-                      value={formData.last_name}
-                      onChange={handleInputChange}
-                      autoComplete="family-name"
                       required
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
@@ -226,9 +215,9 @@ export default function ContactUs() {
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="about_us"
-                      id="about_us"
-                      value={formData.about_us}
+                      name="about"
+                      id="about"
+                      value={formData.about}
                       onChange={handleInputChange}
                       required
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -248,6 +237,7 @@ export default function ContactUs() {
           </div>
         </div>
       </div>
+      {user.id && user.user_type !== "Customer" && <Messages />}
       <Footer />
     </>
   );
