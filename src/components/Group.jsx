@@ -14,25 +14,25 @@ const people = [
     name: 'Emilly Wanjiku',
     title: 'Software Engineer',
     role: 'Admin',
-    email: 'emmanuelmutisya254@gmail.com',
+    email: 'xxxx@gmail.com',
     telephone: '+254715342910',
     imageUrl:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJbd87QavjazVx5tJ9sLdp_p2oqfGoN1KUjw&usqp=CAU',
+      'https://media.licdn.com/dms/image/C4D03AQEXXBDylQLAuA/profile-displayphoto-shrink_800_800/0/1619870483845?e=1693440000&v=beta&t=50bmEZ7NVZh3VDkIsj-HQG4fG4r6wRwKTpm1PSENvv8',
   },
   {
     name: 'Catherine Renee',
     title: 'Software Engineer',
     role: 'Admin',
-    email: 'emmanuelmutisya254@gmail.com',
+    email: '1723renee@gmail.com',
     telephone: '+254723489197',
     imageUrl:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJbd87QavjazVx5tJ9sLdp_p2oqfGoN1KUjw&usqp=CAU',
+      'https://media.licdn.com/dms/image/D4E03AQEBr09ctO64Yw/profile-displayphoto-shrink_800_800/0/1681296112893?e=1693440000&v=beta&t=X0Kl_OY-vn9lXovCIwe9TKPN8OvIzI-xPiRxDYi0zSU',
   },
   {
     name: 'Gikonyo Otieno',
     title: 'Software Engineer',
     role: 'Admin',
-    email: 'emmanuelmutisya254@gmail.com',
+    email: 'gikonyootieno@gmail.com',
     telephone: '+254716557517',
     imageUrl:
       'https://media.licdn.com/dms/image/D4D03AQFJ-uo5U0ToGw/profile-displayphoto-shrink_800_800/0/1684404383203?e=1693440000&v=beta&t=yxO0wu_2WC2SmgnKa6HeYa0uZjlxxUUqa0hXY5eDAcg',
@@ -41,7 +41,7 @@ const people = [
     name: 'John Vundi',
     title: 'Software Engineer',
     role: 'Admin',
-    email: 'emmanuelmutisya254@gmail.com',
+    email: 'johnsonvundy2@gmail.com',
     telephone: '+254778878232',
     imageUrl:
       'https://media.licdn.com/dms/image/D4D03AQGqP1ruioQCOQ/profile-displayphoto-shrink_800_800/0/1687712797737?e=1693440000&v=beta&t=jra-qKcDijDGeuDZrjRir4YN77ojGaGTcP99r_J8fPs',
@@ -50,7 +50,7 @@ const people = [
     name: 'Khalif Onyango',
     title: 'Software Engineer',
     role: 'Admin',
-    email: 'emmanuelmutisya254@gmail.com',
+    email: 'khalifnashon@gmail.com',
     telephone: '+254743425004',
     imageUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJbd87QavjazVx5tJ9sLdp_p2oqfGoN1KUjw&usqp=CAU',
