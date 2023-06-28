@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMessages } from "../slices/messagesSlice";
 import Swal from "sweetalert2";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function Messages() {
   const dispatch = useDispatch();
@@ -12,7 +13,17 @@ export default function Messages() {
   }, [dispatch]);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return (
+        <div className="flex h-screen items-center justify-center">
+          <BeatLoader
+            loading={loading}
+            color="#4F46E5"
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      );
   }
 
   function replyTo(e) {
@@ -32,6 +43,7 @@ export default function Messages() {
       .then((res) => res.json())
       .then((data) => {
         if (!data.errors) {
+            dispatch(getMessages());
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -77,7 +89,7 @@ export default function Messages() {
               required
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
-            <button className="text-xs leading-5 text-gray-500">Reply</button>
+            <button className="text-xs leading-5 text-gray-500 font-bold">Reply</button>
           </form>
         </li>
       ))}
