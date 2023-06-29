@@ -14,7 +14,7 @@ const people = [
     name: 'Emilly Wanjiku',
     title: 'Software Engineer',
     role: 'Admin',
-    email: 'xxxx@gmail.com',
+    email: 'cikuemilly@gmail.com',
     telephone: '+254715342910',
     imageUrl:
       'https://media.licdn.com/dms/image/C4D03AQEXXBDylQLAuA/profile-displayphoto-shrink_800_800/0/1619870483845?e=1693440000&v=beta&t=50bmEZ7NVZh3VDkIsj-HQG4fG4r6wRwKTpm1PSENvv8',

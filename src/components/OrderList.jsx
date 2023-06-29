@@ -71,7 +71,7 @@ export default function OrderList() {
   }
 
   return (
-    <div className="h-screen">
+    <div className="container mx-auto mt-4">
       <div className="border-b border-gray-200 flex justify-center gap-4 items-center p-4">
         <h1 className="text-3xl font-bold">Your Orders</h1>
         <span>
@@ -97,9 +97,9 @@ export default function OrderList() {
             </h1>
             <div className="flex justify-between items-center mb-2">
               <p className="text-gray-500 font-medium">
-                Weight: {parcel.weight}
+                Weight: {parcel.weight} Kg(s)
               </p>
-              <p className="text-gray-500 font-medium">Price: {parcel.price}</p>
+              <p className="text-gray-500 font-medium">Price: {parcel.price} KSH</p>
               <div className="text-gray-500 font-medium flex gap-2">
                 <span>Status: {parcel.status.status}</span>
                 <span className="flex justify-between items-center">
