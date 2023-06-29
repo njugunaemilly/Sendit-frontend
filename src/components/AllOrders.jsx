@@ -74,9 +74,9 @@ export default function AllOrders() {
             </h1>
             <div className="flex justify-between items-center mb-2">
               <p className="text-gray-500 font-medium">
-                Weight: {parcel.weight}
+                Weight: {parcel.weight} Kg(s)
               </p>
-              <p className="text-gray-500 font-medium">Price: {parcel.price}</p>
+              <p className="text-gray-500 font-medium">Price: {parcel.price} KSH</p>
               <div className="text-gray-500 font-medium flex gap-2">
                 <span>Status: {parcel.status.status}</span>
                 <span className="flex justify-between items-center">
